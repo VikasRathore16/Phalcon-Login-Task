@@ -10,15 +10,13 @@ class IndexController extends Controller
 {
     public function indexAction()
     {
-
-
-
         if ($this->cookies->has("email")) {
             //Get the cookie 
             $this->cookies->useEncryption(false);
             $loginCookie = $this->cookies->get("email");
 
             // Get the cookie's value 
+            
             $value = $loginCookie->getValue();
             $this->view->value = $value;
             header("Location:  http://localhost:8080/index/dashboard");
@@ -42,8 +40,6 @@ class IndexController extends Controller
         $this->view->user = $user;
 
         if (count($checkemail) > 0 && count($password)) {
-
-
             $this->view->msg = 'Authentication failed';
         }
         
@@ -66,8 +62,6 @@ class IndexController extends Controller
     public function dashboardAction()
     {
         if($this->session->get('email') == null) {
-
-
             $response = new Response();
             $response->setStatusCode(403);
             $response->setContent("<h1>Authentication Failed ! 403</h1> <p>Please Login</p>");
@@ -75,7 +69,7 @@ class IndexController extends Controller
             $response->send();
             die();
         }
-        //  $this->view->msg = $this->session;
+         $this->view->msg = $this->service;
 
     }
 

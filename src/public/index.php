@@ -14,6 +14,7 @@ use Phalcon\Di;
 use Phalcon\Session\Manager;
 use Phalcon\Session\Adapter\Stream;
 use Phalcon\Http\Response;
+
 $config = new Config([]);
 
 // Define some absolute path constants to aid in locating resources
@@ -69,6 +70,14 @@ $container->set(
             ->start();
 
         return $session;
+    }
+);
+
+$container->set(
+    'service',
+    function () {
+       
+        return date('Y-m-d H:i:s');
     }
 );
 
